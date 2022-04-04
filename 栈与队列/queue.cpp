@@ -1,12 +1,11 @@
-#include <iostream>
-#include <exception>
+#include "queue.h"
 using namespace std;
 
-template <typename T>
-class Queue {
-public:
-
-private:
+int main() {
     
-};
+
+
+
+    return 0;
+}
 

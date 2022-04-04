@@ -1,5 +1,6 @@
 #include "stack.h"
 #include <vector>
+using namespace std;
 
 void stackTest() {
     // Stack<int> stack;

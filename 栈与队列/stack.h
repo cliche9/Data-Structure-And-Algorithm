@@ -3,9 +3,8 @@
 
 #include <iostream>
 #include <exception>
-using namespace std;
 
-#define INITSIZE 10
+#define INIT_SIZE 10
 
 // 顺序栈, 数组实现
 template <typename T>
@@ -13,10 +12,14 @@ class Stack {
 public:
     Stack() { 
         stackTop = -1;
-        stackCapacity = INITSIZE;
-        data = new T[INITSIZE];
+        stackCapacity = INIT_SIZE;
+        data = new T[INIT_SIZE];
     }
-    ~Stack() {}
+    ~Stack() {
+        if (data)
+            delete[] data;
+        data = nullptr;
+    }
     bool empty() { return stackTop == -1; }
     int size() { return stackTop + 1; }
     int capacity() { return stackCapacity; }
@@ -60,7 +63,7 @@ private:
     }
 
     void shrink() {
-        if (stackCapacity / 2 < INITSIZE)
+        if (stackCapacity / 2 < INIT_SIZE)
             return;
         T *tmp = data;
         data = new T[stackCapacity / 2];
@@ -86,7 +89,10 @@ public:
     LinkedStack() { 
         stackTop = nullptr;
     }
-    ~LinkedStack() {}
+    ~LinkedStack() {
+        clear();
+    }
+
     bool empty() { return stackTop == nullptr; }
     int size() { return stackSize; }
 
@@ -106,8 +112,7 @@ public:
     }
 
     void push(T value) {
-        Node<T> *front = new Node<T>(value, stackTop);
-        stackTop = front;
+        stackTop = new Node<T>(value, stackTop);
         ++stackSize;
     }
 
