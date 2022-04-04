@@ -127,7 +127,26 @@ void infixTest() {
     cout << "\nresult: " << suffixCompute(exprs) << endl;
 }
 
+/**
+ * 括号匹配
+ */ 
+void bracketMatchingTest() {
+    string input;
+    cin >> input;
+    Stack<int> stack;
+
+    for (int i = 0; i < input.length(); i++) {
+        if (input[i] == '(') 
+            stack.push(i);
+        else if (input[i] == ')') {
+            int leftBracketIndex = stack.top();
+            cout << leftBracketIndex << ' ' << i << endl;
+            stack.pop();
+        }
+    }
+}
+
 int main() {
-    infixTest();
+    bracketMatchingTest();
     return 0;
 }
